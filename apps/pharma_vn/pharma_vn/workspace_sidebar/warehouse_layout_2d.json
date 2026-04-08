@@ -1,0 +1,77 @@
+{
+ "app": "pharma_vn",
+ "creation": "2026-04-06 00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Workspace Sidebar",
+ "header_icon": "map",
+ "idx": 0,
+ "items": [
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "wallpaper",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Warehouse Layout 2D",
+   "link_to": "Warehouse Layout 2D",
+   "link_type": "Workspace",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "layout-grid",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "WH Layout",
+   "link_to": "WH Layout",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "grid-2x2",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "WH Cell",
+   "link_to": "WH Cell",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "package",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "WH Cell Stock",
+   "link_to": "WH Cell Stock",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "move",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "WH Cell Movement",
+   "link_to": "WH Cell Movement",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-04-06 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Warehouse Layout 2D",
+ "name": "Warehouse Layout 2D",
+ "owner": "Administrator",
+ "standard": 1,
+ "title": "Warehouse Layout 2D"
+}

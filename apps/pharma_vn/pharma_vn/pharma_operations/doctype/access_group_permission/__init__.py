@@ -1,0 +1,1 @@
+"""Access Group Permission doctype."""

@@ -1,0 +1,1 @@
+"""WH Cell Stock DocType."""

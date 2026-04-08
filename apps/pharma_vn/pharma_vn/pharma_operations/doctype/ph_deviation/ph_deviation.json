@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["naming_series", "title", "deviation_type", "status", "severity", "description", "detected_on_doctype", "detected_on_name", "batch_no", "assigned_to", "reported_by", "root_cause", "immediate_action"],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Data", "label": "Naming Series", "default": "PH-DEV-.YYYY.-", "reqd": 1},
+  {"fieldname": "title", "fieldtype": "Data", "label": "Title", "reqd": 1},
+  {"fieldname": "deviation_type", "fieldtype": "Select", "label": "Deviation Type", "options": "Process\nQuality\nWarehouse\nInvoice\nCold Chain"},
+  {"fieldname": "status", "fieldtype": "Select", "label": "Status", "options": "Open\nInvestigating\nAction In Progress\nClosed", "default": "Open"},
+  {"fieldname": "severity", "fieldtype": "Select", "label": "Severity", "options": "Low\nMedium\nHigh\nCritical", "default": "Medium"},
+  {"fieldname": "description", "fieldtype": "Small Text", "label": "Description"},
+  {"fieldname": "detected_on_doctype", "fieldtype": "Data", "label": "Detected On DocType"},
+  {"fieldname": "detected_on_name", "fieldtype": "Data", "label": "Detected On Name"},
+  {"fieldname": "batch_no", "fieldtype": "Link", "label": "Batch", "options": "Batch"},
+  {"fieldname": "assigned_to", "fieldtype": "Link", "label": "Assigned To", "options": "User"},
+  {"fieldname": "reported_by", "fieldtype": "Link", "label": "Reported By", "options": "User"},
+  {"fieldname": "root_cause", "fieldtype": "Small Text", "label": "Root Cause"},
+  {"fieldname": "immediate_action", "fieldtype": "Small Text", "label": "Immediate Action"}
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pharma Operations",
+ "name": "PH Deviation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+  {"create": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Stock Manager", "share": 1, "write": 1}
+ ],
+ "search_fields": "title,batch_no,status,assigned_to",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

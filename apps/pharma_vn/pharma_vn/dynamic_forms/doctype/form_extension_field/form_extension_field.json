@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "label",
+  "fieldtype",
+  "reference_fieldname",
+  "custom_field_name",
+  "insert_after",
+  "reqd",
+  "allow_on_submit",
+  "in_list_view",
+  "hidden",
+  "options",
+  "link_doctype",
+  "table_doctype",
+  "default_value",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "label",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Label"
+  },
+  {
+   "fieldname": "fieldtype",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Field Type",
+   "options": "Data\nSmall Text\nLong Text\nInt\nFloat\nCurrency\nCheck\nDate\nDatetime\nSelect\nLink\nTable\nSection Break\nColumn Break",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reference_fieldname",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Reference Fieldname"
+  },
+  {
+   "fieldname": "custom_field_name",
+   "fieldtype": "Data",
+   "label": "Managed Fieldname",
+   "read_only": 1
+  },
+  {
+   "fieldname": "insert_after",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Insert After",
+   "options": "",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reqd",
+   "fieldtype": "Check",
+   "label": "Required"
+  },
+  {
+   "fieldname": "allow_on_submit",
+   "fieldtype": "Check",
+   "label": "Allow On Submit"
+  },
+  {
+   "fieldname": "in_list_view",
+   "fieldtype": "Check",
+   "label": "In List View"
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Check",
+   "label": "Hidden"
+  },
+  {
+   "fieldname": "options",
+   "fieldtype": "Small Text",
+   "label": "Options"
+  },
+  {
+   "fieldname": "link_doctype",
+   "fieldtype": "Link",
+   "label": "Link DocType",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "table_doctype",
+   "fieldtype": "Link",
+   "label": "Table DocType",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "default_value",
+   "fieldtype": "Data",
+   "label": "Default Value"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Dynamic Forms",
+ "name": "Form Extension Field",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

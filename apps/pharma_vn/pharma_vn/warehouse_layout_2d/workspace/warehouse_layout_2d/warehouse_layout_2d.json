@@ -1,0 +1,115 @@
+{
+ "app": "pharma_vn",
+ "charts": [],
+ "content": "[{\"id\":\"warehouse_layout_shortcut\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WH Layout\",\"col\":3}},{\"id\":\"warehouse_cell_shortcut\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WH Cell\",\"col\":3}},{\"id\":\"warehouse_cell_stock_shortcut\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WH Cell Stock\",\"col\":3}},{\"id\":\"warehouse_cell_movement_shortcut\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"WH Cell Movement\",\"col\":3}},{\"id\":\"warehouse_layout_spacer\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"warehouse_layout_card\",\"type\":\"card\",\"data\":{\"card_name\":\"Warehouse Layout 2D\",\"col\":4}}]",
+ "creation": "2026-04-06 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "map",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Warehouse Layout 2D",
+ "links": [
+  {
+   "description": "Manage 2D layouts, cells, stock by cell, and movement history.",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Warehouse Layout 2D",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WH Layout",
+   "link_count": 0,
+   "link_to": "WH Layout",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WH Cell",
+   "link_count": 0,
+   "link_to": "WH Cell",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WH Cell Stock",
+   "link_count": 0,
+   "link_to": "WH Cell Stock",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "WH Cell Movement",
+   "link_count": 0,
+   "link_to": "WH Cell Movement",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-04-06 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Warehouse Layout 2D",
+ "name": "Warehouse Layout 2D",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 15.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "WH Layout",
+   "link_to": "WH Layout",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "WH Cell",
+   "link_to": "WH Cell",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "WH Cell Stock",
+   "link_to": "WH Cell Stock",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "WH Cell Movement",
+   "link_to": "WH Cell Movement",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Warehouse Layout 2D",
+ "type": "Workspace"
+}

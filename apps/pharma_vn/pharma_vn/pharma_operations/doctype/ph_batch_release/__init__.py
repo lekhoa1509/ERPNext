@@ -1,0 +1,1 @@
+"""PH Batch Release doctype."""

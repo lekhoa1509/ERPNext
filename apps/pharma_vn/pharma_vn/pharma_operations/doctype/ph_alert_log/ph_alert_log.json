@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "hash",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "alert_key",
+  "alert_type",
+  "severity",
+  "status",
+  "message",
+  "reference_doctype",
+  "reference_name",
+  "payload_json",
+  "last_triggered_on",
+  "assigned_to"
+ ],
+ "fields": [
+  {"fieldname": "alert_key", "fieldtype": "Data", "label": "Alert Key", "reqd": 1, "unique": 1},
+  {"fieldname": "alert_type", "fieldtype": "Data", "label": "Alert Type", "reqd": 1},
+  {"fieldname": "severity", "fieldtype": "Select", "label": "Severity", "options": "Low\nMedium\nHigh\nCritical"},
+  {"fieldname": "status", "fieldtype": "Select", "label": "Status", "options": "Open\nAcknowledged\nResolved", "default": "Open"},
+  {"fieldname": "message", "fieldtype": "Small Text", "label": "Message"},
+  {"fieldname": "reference_doctype", "fieldtype": "Data", "label": "Reference DocType"},
+  {"fieldname": "reference_name", "fieldtype": "Data", "label": "Reference Name"},
+  {"fieldname": "payload_json", "fieldtype": "Long Text", "label": "Payload JSON"},
+  {"fieldname": "last_triggered_on", "fieldtype": "Datetime", "label": "Last Triggered On"},
+  {"fieldname": "assigned_to", "fieldtype": "Link", "label": "Assigned To", "options": "User"}
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pharma Operations",
+ "name": "PH Alert Log",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+  {"create": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Stock Manager", "share": 1, "write": 1}
+ ],
+ "search_fields": "alert_key,alert_type,reference_name,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

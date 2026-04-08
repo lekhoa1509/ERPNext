@@ -1,0 +1,30 @@
+{
+ "actions": [],
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "access_group",
+  "priority",
+  "is_active",
+  "note"
+ ],
+ "fields": [
+  {"fieldname": "access_group", "fieldtype": "Link", "in_list_view": 1, "label": "Access Group", "options": "Access Group", "reqd": 1},
+  {"default": "100", "fieldname": "priority", "fieldtype": "Int", "in_list_view": 1, "label": "Priority", "reqd": 1},
+  {"default": "1", "fieldname": "is_active", "fieldtype": "Check", "label": "Is Active"},
+  {"fieldname": "note", "fieldtype": "Data", "label": "Note"}
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pharma Operations",
+ "name": "User Access Group Assignment",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

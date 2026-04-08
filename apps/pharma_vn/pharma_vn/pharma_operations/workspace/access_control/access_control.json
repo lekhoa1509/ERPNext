@@ -1,0 +1,40 @@
+{
+ "app": "pharma_vn",
+ "charts": [],
+ "content": "[{\"id\":\"function_access_shortcut\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Function Access\",\"col\":4}},{\"id\":\"access_group_shortcut\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Access Group\",\"col\":4}},{\"id\":\"user_access_profile_shortcut\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User Access Profile\",\"col\":4}},{\"id\":\"access_control_spacer\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"access_control_card\",\"type\":\"card\",\"data\":{\"card_name\":\"Access Control\",\"col\":4}}]",
+ "creation": "2026-04-08 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "lock",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Access Control",
+ "links": [
+  {"description": "Manage function-level access by group first, then user override.", "hidden": 0, "is_query_report": 0, "label": "Access Control", "link_count": 3, "link_type": "DocType", "onboard": 0, "type": "Card Break"},
+  {"hidden": 0, "is_query_report": 0, "label": "Function Access", "link_count": 0, "link_to": "Function Access", "link_type": "DocType", "onboard": 0, "type": "Link"},
+  {"hidden": 0, "is_query_report": 0, "label": "Access Group", "link_count": 0, "link_to": "Access Group", "link_type": "DocType", "onboard": 0, "type": "Link"},
+  {"hidden": 0, "is_query_report": 0, "label": "User Access Profile", "link_count": 0, "link_to": "User Access Profile", "link_type": "DocType", "onboard": 0, "type": "Link"}
+ ],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pharma Operations",
+ "name": "Access Control",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 17.0,
+ "shortcuts": [
+  {"color": "Blue", "doc_view": "List", "label": "Function Access", "link_to": "Function Access", "stats_filter": "[]", "type": "DocType"},
+  {"color": "Orange", "doc_view": "List", "label": "Access Group", "link_to": "Access Group", "stats_filter": "[]", "type": "DocType"},
+  {"color": "Green", "doc_view": "List", "label": "User Access Profile", "link_to": "User Access Profile", "stats_filter": "[]", "type": "DocType"}
+ ],
+ "title": "Access Control",
+ "type": "Workspace"
+}

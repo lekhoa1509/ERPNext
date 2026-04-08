@@ -1,0 +1,31 @@
+services:
+  pharma-db:
+    image: mariadb:10.6
+    container_name: pharma-db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${BOOTSTRAP_DB_ROOT_PASSWORD:-root_2026_secure}
+      MARIADB_DATABASE: ${BOOTSTRAP_DB_NAME:-pharma_vn_bootstrap}
+      MARIADB_USER: ${BOOTSTRAP_DB_USER:-pharma_app}
+      MARIADB_PASSWORD: ${BOOTSTRAP_DB_PASSWORD:-pharma_app_2026}
+    ports:
+      - "${BOOTSTRAP_DB_HOST_PORT:-3307}:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    volumes:
+      - pharma-db-data:/var/lib/mysql
+      - ../database/sql/10-schema.sql:/docker-entrypoint-initdb.d/10-schema.sql:ro
+      - ../database/sql/20-reference-data.sql:/docker-entrypoint-initdb.d/20-reference-data.sql:ro
+      - ../database/sql/30-sample-data.sql:/docker-entrypoint-initdb.d/30-sample-data.sql:ro
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${BOOTSTRAP_DB_ROOT_PASSWORD:-root_2026_secure}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+volumes:
+  pharma-db-data:
+

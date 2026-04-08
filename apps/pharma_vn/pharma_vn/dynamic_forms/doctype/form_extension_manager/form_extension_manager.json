@@ -1,0 +1,144 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "field:extension_name",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "extension_name",
+  "target_doctype",
+  "status",
+  "description",
+  "section_fields",
+  "extension_fields",
+  "section_reference",
+  "base_schema_preview_html",
+  "base_schema_json",
+  "extension_plan_json",
+  "managed_fields_json"
+ ],
+ "fields": [
+  {
+   "fieldname": "extension_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Extension Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "target_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nApplied\nDisabled\nUninstalled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_fields",
+   "fieldtype": "Section Break",
+   "label": "Extension Fields"
+  },
+  {
+   "fieldname": "extension_fields",
+   "fieldtype": "Table",
+   "label": "Extension Fields",
+   "options": "Form Extension Field",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_reference",
+   "fieldtype": "Section Break",
+   "label": "Reference & Plan"
+  },
+  {
+   "fieldname": "base_schema_preview_html",
+   "fieldtype": "HTML",
+   "label": "Base Form Preview"
+  },
+  {
+   "fieldname": "base_schema_json",
+   "fieldtype": "Code",
+   "label": "Base Schema JSON",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "extension_plan_json",
+   "fieldtype": "Code",
+   "label": "Extension Plan JSON",
+   "options": "JSON",
+   "read_only": 1
+  },
+  {
+   "fieldname": "managed_fields_json",
+   "fieldtype": "Code",
+   "label": "Managed Fields JSON",
+   "options": "JSON",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 20,
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Form Extension Log",
+   "link_fieldname": "extension_manager"
+  }
+ ],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Dynamic Forms",
+ "name": "Form Extension Manager",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Desk User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "extension_name,target_doctype,status",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "extension_name",
+ "track_changes": 1
+}

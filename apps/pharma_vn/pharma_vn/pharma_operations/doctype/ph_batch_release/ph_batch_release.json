@@ -1,0 +1,132 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "batch_no",
+  "item_code",
+  "warehouse",
+  "status",
+  "reviewed_by",
+  "release_date",
+  "quality_reference",
+  "source_doctype",
+  "source_name",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "default": "PH-BR-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "label": "Naming Series",
+   "reqd": 1
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Batch",
+   "options": "Batch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nReleased\nHold\nRejected",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reviewed_by",
+   "fieldtype": "Link",
+   "label": "Reviewed By",
+   "options": "User"
+  },
+  {
+   "fieldname": "release_date",
+   "fieldtype": "Datetime",
+   "label": "Release Date"
+  },
+  {
+   "fieldname": "quality_reference",
+   "fieldtype": "Data",
+   "label": "Quality Reference"
+  },
+  {
+   "fieldname": "source_doctype",
+   "fieldtype": "Data",
+   "label": "Source DocType"
+  },
+  {
+   "fieldname": "source_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Source Name",
+   "options": "source_doctype"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pharma Operations",
+ "name": "PH Batch Release",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "batch_no,item_code,warehouse,status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

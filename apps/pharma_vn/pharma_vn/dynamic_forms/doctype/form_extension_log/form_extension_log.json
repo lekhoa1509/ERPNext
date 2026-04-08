@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:FEL-{YYYY}-{#####}",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "extension_manager",
+  "target_doctype",
+  "action",
+  "custom_field_name",
+  "detail",
+  "performed_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "extension_manager",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Extension Manager",
+   "options": "Form Extension Manager",
+   "reqd": 1
+  },
+  {
+   "fieldname": "target_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "action",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Action",
+   "options": "Apply\nDisable\nUninstall",
+   "reqd": 1
+  },
+  {
+   "fieldname": "custom_field_name",
+   "fieldtype": "Data",
+   "label": "Custom Field Name"
+  },
+  {
+   "fieldname": "detail",
+   "fieldtype": "Small Text",
+   "label": "Detail"
+  },
+  {
+   "fieldname": "performed_by",
+   "fieldtype": "Link",
+   "label": "Performed By",
+   "options": "User",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Dynamic Forms",
+ "name": "Form Extension Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Desk User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "extension_manager,target_doctype,action",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

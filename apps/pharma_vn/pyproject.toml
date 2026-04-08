@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pharma_vn"
+version = "0.1.0"
+description = "ERPNext/Frappe custom app for Vietnam pharma operations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "OpenAI Codex" }
+]
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["pharma_vn*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+

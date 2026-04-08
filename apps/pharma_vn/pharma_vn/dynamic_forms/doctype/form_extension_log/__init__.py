@@ -1,0 +1,1 @@
+"""Form Extension Log doctype."""

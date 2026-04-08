@@ -1,0 +1,39 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": ["naming_series", "title", "capa_type", "status", "linked_deviation", "description", "assigned_to", "owner_user", "target_date", "effectiveness_review"],
+ "fields": [
+  {"fieldname": "naming_series", "fieldtype": "Data", "label": "Naming Series", "default": "PH-CAPA-.YYYY.-", "reqd": 1},
+  {"fieldname": "title", "fieldtype": "Data", "label": "Title", "reqd": 1},
+  {"fieldname": "capa_type", "fieldtype": "Select", "label": "CAPA Type", "options": "Corrective\nPreventive", "default": "Corrective"},
+  {"fieldname": "status", "fieldtype": "Select", "label": "Status", "options": "Open\nAssigned\nIn Progress\nEffectiveness Review\nClosed", "default": "Open"},
+  {"fieldname": "linked_deviation", "fieldtype": "Link", "label": "Linked Deviation", "options": "PH Deviation"},
+  {"fieldname": "description", "fieldtype": "Small Text", "label": "Description"},
+  {"fieldname": "assigned_to", "fieldtype": "Link", "label": "Assigned To", "options": "User"},
+  {"fieldname": "owner_user", "fieldtype": "Link", "label": "Owner User", "options": "User"},
+  {"fieldname": "target_date", "fieldtype": "Date", "label": "Target Date"},
+  {"fieldname": "effectiveness_review", "fieldtype": "Small Text", "label": "Effectiveness Review"}
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pharma Operations",
+ "name": "PH CAPA",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+  {"create": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Stock Manager", "share": 1, "write": 1}
+ ],
+ "search_fields": "title,linked_deviation,status,assigned_to",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

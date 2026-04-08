@@ -1,0 +1,172 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "hash",
+ "creation": "2026-04-06 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_datetime",
+  "movement_type",
+  "layout",
+  "warehouse",
+  "cell",
+  "item_code",
+  "batch_no",
+  "qty_change",
+  "balance_qty_after",
+  "uom",
+  "section_source",
+  "source_doctype",
+  "source_name",
+  "source_row_name",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "posting_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Posting Datetime",
+   "reqd": 1
+  },
+  {
+   "fieldname": "movement_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Movement Type",
+   "options": "Inbound\nOutbound\nTransfer\nAdjustment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "layout",
+   "fieldtype": "Link",
+   "label": "WH Layout",
+   "options": "WH Layout",
+   "reqd": 1
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cell",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "WH Cell",
+   "options": "WH Cell",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "qty_change",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty Change",
+   "reqd": 1
+  },
+  {
+   "fieldname": "balance_qty_after",
+   "fieldtype": "Float",
+   "label": "Balance Qty After",
+   "reqd": 1
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "section_source",
+   "fieldtype": "Section Break",
+   "label": "Source"
+  },
+  {
+   "fieldname": "source_doctype",
+   "fieldtype": "Link",
+   "label": "Source DocType",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "source_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Source Document",
+   "options": "source_doctype"
+  },
+  {
+   "fieldname": "source_row_name",
+   "fieldtype": "Data",
+   "label": "Source Row Name"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-06 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Warehouse Layout 2D",
+ "name": "WH Cell Movement",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User",
+   "share": 1
+  }
+ ],
+ "search_fields": "cell,item_code,batch_no,source_doctype,source_name",
+ "sort_field": "posting_datetime",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

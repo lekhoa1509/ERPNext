@@ -1,0 +1,126 @@
+x-app-env-file: &app_env_file
+  env_file:
+    - ../.env
+
+services:
+
+  db:
+    image: mariadb:10.6
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_NAME}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    restart: unless-stopped
+
+  redis-cache:
+    image: redis:7-alpine
+    command: redis-server --appendonly no
+    restart: unless-stopped
+
+  redis-queue:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+
+  redis-socketio:
+    image: redis:7-alpine
+    command: redis-server --appendonly no
+    restart: unless-stopped
+
+  backend:
+    <<: *app_env_file
+    image: ${ERPNEXT_IMAGE}:${ERPNEXT_IMAGE_TAG}
+    depends_on:
+      - db
+      - redis-cache
+      - redis-queue
+      - redis-socketio
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      REDIS_CACHE: redis-cache:6379
+      REDIS_QUEUE: redis-queue:6379
+      REDIS_SOCKETIO: redis-socketio:6379
+      SOCKETIO_PORT: 9000
+      SITE_NAME: ${SITE_NAME}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    restart: unless-stopped
+
+  websocket:
+    <<: *app_env_file
+    image: ${ERPNEXT_IMAGE}:${ERPNEXT_IMAGE_TAG}
+    depends_on:
+      - backend
+    command: node /home/frappe/frappe-bench/apps/frappe/socketio.js
+    environment:
+      REDIS_SOCKETIO: redis-socketio:6379
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    restart: unless-stopped
+
+  queue-short:
+    <<: *app_env_file
+    image: ${ERPNEXT_IMAGE}:${ERPNEXT_IMAGE_TAG}
+    depends_on:
+      - backend
+    command: bench worker --queue short
+    environment:
+      REDIS_QUEUE: redis-queue:6379
+      REDIS_CACHE: redis-cache:6379
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    restart: unless-stopped
+
+  queue-default:
+    <<: *app_env_file
+    image: ${ERPNEXT_IMAGE}:${ERPNEXT_IMAGE_TAG}
+    depends_on:
+      - backend
+    command: bench worker --queue default
+    environment:
+      REDIS_QUEUE: redis-queue:6379
+      REDIS_CACHE: redis-cache:6379
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    restart: unless-stopped
+
+  queue-long:
+    <<: *app_env_file
+    image: ${ERPNEXT_IMAGE}:${ERPNEXT_IMAGE_TAG}
+    depends_on:
+      - backend
+    command: bench worker --queue long
+    environment:
+      REDIS_QUEUE: redis-queue:6379
+      REDIS_CACHE: redis-cache:6379
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    restart: unless-stopped
+
+  scheduler:
+    <<: *app_env_file
+    image: ${ERPNEXT_IMAGE}:${ERPNEXT_IMAGE_TAG}
+    depends_on:
+      - backend
+    command: bench schedule
+    environment:
+      REDIS_QUEUE: redis-queue:6379
+      REDIS_CACHE: redis-cache:6379
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  sites:

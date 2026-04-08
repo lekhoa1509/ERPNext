@@ -1,0 +1,77 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:DFS-{YYYY}-{#####}",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "dynamic_form",
+  "submitted_by",
+  "payload_json"
+ ],
+ "fields": [
+  {
+   "fieldname": "dynamic_form",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Dynamic Form",
+   "options": "Dynamic Form",
+   "reqd": 1
+  },
+  {
+   "fieldname": "submitted_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Submitted By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payload_json",
+   "fieldtype": "Code",
+   "label": "Payload JSON",
+   "options": "JSON",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Dynamic Forms",
+ "name": "Dynamic Form Submission",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Desk User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "dynamic_form,submitted_by",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

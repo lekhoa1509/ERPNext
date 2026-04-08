@@ -1,0 +1,1 @@
+"""WH Cell DocType."""

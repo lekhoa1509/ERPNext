@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "field:user",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "description",
+  "section_groups",
+  "group_assignments",
+  "section_overrides",
+  "user_overrides",
+  "section_effective",
+  "effective_permissions_json"
+ ],
+ "fields": [
+  {"fieldname": "user", "fieldtype": "Link", "in_list_view": 1, "label": "User", "options": "User", "reqd": 1, "unique": 1},
+  {"fieldname": "description", "fieldtype": "Small Text", "label": "Description"},
+  {"fieldname": "section_groups", "fieldtype": "Section Break", "label": "Group Assignments"},
+  {"fieldname": "group_assignments", "fieldtype": "Table", "label": "Group Assignments", "options": "User Access Group Assignment"},
+  {"fieldname": "section_overrides", "fieldtype": "Section Break", "label": "User Overrides"},
+  {"fieldname": "user_overrides", "fieldtype": "Table", "label": "User Overrides", "options": "User Access Override"},
+  {"fieldname": "section_effective", "fieldtype": "Section Break", "label": "Effective Permissions"},
+  {"fieldname": "effective_permissions_json", "fieldtype": "Code", "label": "Effective Permissions JSON", "options": "JSON", "read_only": 1}
+ ],
+ "grid_page_length": 20,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pharma Operations",
+ "name": "User Access Profile",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "System Manager", "share": 1, "write": 1},
+  {"create": 1, "delete": 1, "email": 1, "export": 1, "print": 1, "read": 1, "report": 1, "role": "Desk User", "share": 1, "write": 1}
+ ],
+ "search_fields": "user",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "user",
+ "track_changes": 1
+}

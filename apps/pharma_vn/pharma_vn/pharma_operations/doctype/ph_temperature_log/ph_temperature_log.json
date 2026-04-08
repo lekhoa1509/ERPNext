@@ -1,0 +1,133 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "hash",
+ "creation": "2026-04-08 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "warehouse",
+  "item_code",
+  "batch_no",
+  "sensor_id",
+  "recorded_at",
+  "temperature_c",
+  "min_temp",
+  "max_temp",
+  "action_required",
+  "notification_sent",
+  "excursion_type",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "sensor_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sensor ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "recorded_at",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Recorded At"
+  },
+  {
+   "fieldname": "temperature_c",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Temperature (C)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "min_temp",
+   "fieldtype": "Float",
+   "label": "Min Temperature"
+  },
+  {
+   "fieldname": "max_temp",
+   "fieldtype": "Float",
+   "label": "Max Temperature"
+  },
+  {
+   "fieldname": "action_required",
+   "fieldtype": "Check",
+   "label": "Action Required"
+  },
+  {
+   "fieldname": "notification_sent",
+   "fieldtype": "Check",
+   "label": "Notification Sent"
+  },
+  {
+   "fieldname": "excursion_type",
+   "fieldtype": "Select",
+   "label": "Excursion Type",
+   "options": "within_range\nbelow_min\nabove_max"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-08 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pharma Operations",
+ "name": "PH Temperature Log",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "warehouse,item_code,batch_no,sensor_id",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
