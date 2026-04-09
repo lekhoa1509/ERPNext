@@ -1,0 +1,35 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "creation": "2026-04-09 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "component_name",
+  "component_code",
+  "calculation_type",
+  "amount",
+  "reduce_taxable_income",
+  "notes"
+ ],
+ "fields": [
+  {"fieldname": "component_name", "fieldtype": "Data", "in_list_view": 1, "label": "Component Name", "reqd": 1},
+  {"fieldname": "component_code", "fieldtype": "Data", "label": "Component Code"},
+  {"default": "Fixed", "fieldname": "calculation_type", "fieldtype": "Select", "in_list_view": 1, "label": "Calculation Type", "options": "Fixed\nPercent", "reqd": 1},
+  {"fieldname": "amount", "fieldtype": "Float", "in_list_view": 1, "label": "Amount / Percent", "reqd": 1},
+  {"default": "0", "fieldname": "reduce_taxable_income", "fieldtype": "Check", "label": "Reduce Taxable Income"},
+  {"fieldname": "notes", "fieldtype": "Small Text", "label": "Notes"}
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-04-09 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "HRM",
+ "name": "Employee Contract Deduction",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

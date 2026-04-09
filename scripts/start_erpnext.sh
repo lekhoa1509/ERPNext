@@ -7,6 +7,7 @@ COMPOSE_FILE="${ROOT_DIR}/deploy/docker-compose.erp.yml"
 PROJECT_NAME="${ERPNEXT_COMPOSE_PROJECT:-erpnext-pharma}"
 
 export ERPNEXT_VERSION="${ERPNEXT_VERSION:-v16.12.0}"
+export HRMS_VERSION="${HRMS_VERSION:-version-16}"
 export ERPNEXT_SITE_NAME="${ERPNEXT_SITE_NAME:-frontend}"
 export ERPNEXT_ADMIN_PASSWORD="${ERPNEXT_ADMIN_PASSWORD:-admin}"
 export ERPNEXT_DB_ROOT_PASSWORD="${ERPNEXT_DB_ROOT_PASSWORD:-admin}"
@@ -38,6 +39,9 @@ for _ in $(seq 1 90); do
     docker compose -p "${PROJECT_NAME}" -f "${COMPOSE_FILE}" exec -T backend \
       bash -lc "mkdir -p /home/frappe/frappe-bench/sites/assets; \
       ln -sfn /home/frappe/frappe-bench/apps/pharma_vn/pharma_vn/public /home/frappe/frappe-bench/sites/assets/pharma_vn; \
+      bench --site \"${ERPNEXT_SITE_NAME}\" install-app hrms >/dev/null 2>&1 || true; \
+      bench --site \"${ERPNEXT_SITE_NAME}\" migrate >/dev/null 2>&1 || true; \
+      bench build --app hrms >/dev/null 2>&1 || true; \
       bench --site \"${ERPNEXT_SITE_NAME}\" clear-cache >/dev/null 2>&1 || true; \
       bench --site \"${ERPNEXT_SITE_NAME}\" enable-scheduler >/dev/null 2>&1 || true"
     "${ROOT_DIR}/scripts/sync_vi_translations.sh"

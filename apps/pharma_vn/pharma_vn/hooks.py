@@ -5,19 +5,21 @@ app_description = "ERPNext customizations for pharmaceutical operations in Vietn
 app_email = "support@example.com"
 app_license = "MIT"
 required_apps = ["erpnext"]
-ASSET_VERSION = "20260408.2345"
+ASSET_VERSION = "20260409.1545"
 
 after_install = "pharma_vn.install.after_install"
 after_migrate = "pharma_vn.install.after_migrate"
 app_include_css = [
     f"/assets/pharma_vn/css/pharma_byd.css?v={ASSET_VERSION}",
     f"/assets/pharma_vn/css/erp_home.css?v={ASSET_VERSION}",
+    f"/assets/pharma_vn/css/hrm_custom_pages.css?v={ASSET_VERSION}",
 ]
 app_include_js = [
     f"/assets/pharma_vn/js/document_flow.js?v={ASSET_VERSION}",
     f"/assets/pharma_vn/js/erp_home.js?v={ASSET_VERSION}",
     f"/assets/pharma_vn/js/ai_assistant.js?v={ASSET_VERSION}",
     f"/assets/pharma_vn/js/transaction_vat.js?v={ASSET_VERSION}",
+    f"/assets/pharma_vn/js/hrm_custom_pages.js?v={ASSET_VERSION}",
 ]
 doctype_js = {
     "Quotation": "public/js/document_flow_form.js",
@@ -34,6 +36,7 @@ doctype_js = {
     "Form Extension Manager": "public/js/form_extension_manager.js",
     "User Access Profile": "public/js/user_access_profile.js",
     "Access Group": "public/js/access_group.js",
+    "Salary Slip": "public/js/salary_slip.js",
 }
 
 doc_events = {
@@ -66,6 +69,9 @@ doc_events = {
     "Purchase Invoice": {
         "validate": "pharma_vn.automation.transaction_taxes.sync_transaction_taxes",
     },
+    "Salary Slip": {
+        "before_save": "pharma_vn.hrm.payroll.before_save_salary_slip",
+    },
 }
 
 scheduler_events = {
@@ -75,4 +81,5 @@ scheduler_events = {
         "pharma_vn.automation.scheduler.process_stock_mismatches",
     ],
     "daily": ["pharma_vn.automation.scheduler.process_near_expiry_batches"],
+    "monthly": ["pharma_vn.hrm.payroll.run_monthly_payroll_scheduler"],
 }

@@ -1,0 +1,241 @@
+{
+ "app": "pharma_vn",
+ "charts": [],
+ "content": "[{\"id\":\"hrm_dashboard\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"hrm_employee\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hồ sơ nhân sự\",\"col\":3}},{\"id\":\"hrm_contracts\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Hợp đồng\",\"col\":3}},{\"id\":\"hrm_attendance\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chấm công\",\"col\":3}},{\"id\":\"hrm_leave\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Nghỉ phép\",\"col\":3}},{\"id\":\"hrm_payroll\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Tính lương\",\"col\":3}},{\"id\":\"hrm_performance\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Đánh giá\",\"col\":3}},{\"id\":\"hrm_kpi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"KPI\",\"col\":3}},{\"id\":\"hrm_booking\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Book phòng họp\",\"col\":3}},{\"id\":\"hrm_archive\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lưu hồ sơ\",\"col\":3}},{\"id\":\"hrm_offboarding\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Nghỉ việc\",\"col\":3}}]",
+ "creation": "2026-04-09 11:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "users",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "HRM",
+ "links": [
+  {
+   "description": "Custom pages for HRM without business DocTypes.",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "HRM",
+   "link_count": 10,
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Dashboard",
+   "link_count": 0,
+   "link_to": "hrm-dashboard",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Hồ sơ nhân sự",
+   "link_count": 0,
+   "link_to": "hrm-employee-profile",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Hợp đồng",
+   "link_count": 0,
+   "link_to": "hrm-contracts",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Chấm công",
+   "link_count": 0,
+   "link_to": "hrm-attendance",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Nghỉ phép",
+   "link_count": 0,
+   "link_to": "hrm-leave",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Tính lương",
+   "link_count": 0,
+   "link_to": "hrm-payroll",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Đánh giá",
+   "link_count": 0,
+   "link_to": "hrm-performance",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "KPI",
+   "link_count": 0,
+   "link_to": "hrm-kpi",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Book phòng họp",
+   "link_count": 0,
+   "link_to": "hrm-meeting-room-booking",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Lưu hồ sơ",
+   "link_count": 0,
+   "link_to": "hrm-document-archive",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Nghỉ việc",
+   "link_count": 0,
+   "link_to": "hrm-offboarding",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-04-09 11:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "HRM",
+ "name": "HRM",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 12.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Dashboard",
+   "link_to": "hrm-dashboard",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Hồ sơ nhân sự",
+   "link_to": "hrm-employee-profile",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Hợp đồng",
+   "link_to": "hrm-contracts",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Chấm công",
+   "link_to": "hrm-attendance",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Nghỉ phép",
+   "link_to": "hrm-leave",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Tính lương",
+   "link_to": "hrm-payroll",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Đánh giá",
+   "link_to": "hrm-performance",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "KPI",
+   "link_to": "hrm-kpi",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Book phòng họp",
+   "link_to": "hrm-meeting-room-booking",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Lưu hồ sơ",
+   "link_to": "hrm-document-archive",
+   "stats_filter": "[]",
+   "type": "Page"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Nghỉ việc",
+   "link_to": "hrm-offboarding",
+   "stats_filter": "[]",
+   "type": "Page"
+  }
+ ],
+ "title": "HRM",
+ "type": "Workspace"
+}

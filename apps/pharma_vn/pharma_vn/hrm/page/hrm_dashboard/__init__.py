@@ -1,0 +1,1 @@
+"""HRM Dashboard page."""

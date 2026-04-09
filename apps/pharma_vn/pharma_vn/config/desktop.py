@@ -5,6 +5,13 @@ from frappe import _
 def get_data():
     return [
         {
+            "module_name": "HRM",
+            "label": _("HRM"),
+            "color": "red",
+            "icon": "fa fa-users",
+            "type": "module",
+        },
+        {
             "module_name": "Pharma Operations",
             "label": _("Pharma Operations"),
             "color": "green",

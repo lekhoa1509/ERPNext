@@ -2,6 +2,7 @@ import frappe
 from frappe.custom.doctype.custom_field.custom_field import (
     create_custom_fields as make_custom_fields,
 )
+from frappe.exceptions import DoesNotExistError
 from pharma_vn.setup.taxes import get_vat_rate_options
 
 
@@ -171,6 +172,88 @@ CUSTOM_FIELDS = {
             "fieldtype": "Select",
             "options": "\nManufacturer\nTrader\nImporter\nService",
             "insert_after": "approved_vendor_status",
+        },
+    ],
+    "Employee": [
+        {
+            "fieldname": "default_salary_structure",
+            "label": "Default Salary Structure",
+            "fieldtype": "Link",
+            "options": "Salary Structure",
+            "insert_after": "company",
+        },
+    ],
+    "Salary Slip": [
+        {
+            "fieldname": "employee_contract",
+            "label": "Employee Contract",
+            "fieldtype": "Link",
+            "options": "Employee Contract",
+            "insert_after": "salary_structure",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_total_working_days",
+            "label": "Total Working Days",
+            "fieldtype": "Float",
+            "insert_after": "employee_contract",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_total_working_hours",
+            "label": "Total Working Hours",
+            "fieldtype": "Float",
+            "insert_after": "pharma_total_working_days",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_overtime_hours",
+            "label": "Overtime Hours",
+            "fieldtype": "Float",
+            "insert_after": "pharma_total_working_hours",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_base_salary",
+            "label": "Calculated Base Salary",
+            "fieldtype": "Currency",
+            "insert_after": "pharma_overtime_hours",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_overtime_salary",
+            "label": "Calculated OT Salary",
+            "fieldtype": "Currency",
+            "insert_after": "pharma_base_salary",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_allowance_total",
+            "label": "Allowance Total",
+            "fieldtype": "Currency",
+            "insert_after": "pharma_overtime_salary",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_deduction_total",
+            "label": "Deduction Total",
+            "fieldtype": "Currency",
+            "insert_after": "pharma_allowance_total",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_taxable_income",
+            "label": "Taxable Income",
+            "fieldtype": "Currency",
+            "insert_after": "pharma_deduction_total",
+            "read_only": 1,
+        },
+        {
+            "fieldname": "pharma_payroll_breakdown_json",
+            "label": "Payroll Breakdown JSON",
+            "fieldtype": "Long Text",
+            "insert_after": "pharma_taxable_income",
+            "read_only": 1,
         },
     ],
     "Sales Order Item": [
@@ -827,7 +910,14 @@ def create_custom_fields():
     filtered_custom_fields = {}
 
     for doctype, fields in CUSTOM_FIELDS.items():
-        meta = frappe.get_meta(doctype)
+        try:
+            meta = frappe.get_meta(doctype)
+        except DoesNotExistError:
+            frappe.logger("pharma_vn").info(
+                "Skipping custom fields for %s because the DocType does not exist on this site",
+                doctype,
+            )
+            continue
         filtered_fields = []
 
         for field in fields:

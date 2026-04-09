@@ -1,0 +1,1 @@
+"""Employee Contract Deduction DocType."""

@@ -1,0 +1,1 @@
+"""Payroll Tax Slab DocType."""

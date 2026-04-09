@@ -4,6 +4,7 @@ x-custom-image: &custom_image
     dockerfile: deploy/erpnext/Dockerfile
     args:
       ERPNEXT_VERSION: ${ERPNEXT_VERSION:-v16.12.0}
+      HRMS_VERSION: ${HRMS_VERSION:-version-16}
   image: erpnext-pharma-local:${ERPNEXT_VERSION:-v16.12.0}
 
 x-app-env-file: &app_env_file
@@ -93,7 +94,7 @@ services:
           fi;
         done;
         echo "sites/common_site_config.json found";
-        bench new-site --mariadb-user-host-login-scope='%' --admin-password=${ERPNEXT_ADMIN_PASSWORD:-admin} --db-root-username=root --db-root-password=${ERPNEXT_DB_ROOT_PASSWORD:-admin} --install-app erpnext --install-app pharma_vn --set-default ${ERPNEXT_SITE_NAME:-frontend};
+        bench new-site --mariadb-user-host-login-scope='%' --admin-password=${ERPNEXT_ADMIN_PASSWORD:-admin} --db-root-username=root --db-root-password=${ERPNEXT_DB_ROOT_PASSWORD:-admin} --install-app erpnext --install-app hrms --install-app pharma_vn --set-default ${ERPNEXT_SITE_NAME:-frontend};
         mkdir -p /home/frappe/frappe-bench/sites/assets;
         ln -sfn /home/frappe/frappe-bench/apps/pharma_vn/pharma_vn/public /home/frappe/frappe-bench/sites/assets/pharma_vn;
         bench --site ${ERPNEXT_SITE_NAME:-frontend} execute pharma_vn.setup.bootstrap_demo.bootstrap_vietnam_demo;

@@ -15,6 +15,19 @@ window.pharma_vn = window.pharma_vn || {};
         Accounts: ["Invoicing", "Financial Reports"],
         "Kế toán": ["Invoicing", "Financial Reports"],
     };
+    const REQUIRED_DESKTOP_ICONS = [
+        {
+            label: "HRM",
+            name: "HRM",
+            icon: "users",
+            icon_type: "Link",
+            link_type: "Workspace Sidebar",
+            link_to: "HRM",
+            hidden: 0,
+            idx: 999,
+            parent_icon: "",
+        },
+    ];
 
     let isBound = false;
     let applyTimeout = null;
@@ -243,8 +256,38 @@ window.pharma_vn = window.pharma_vn || {};
         return frappe?.boot?.desktop_icons || [];
     }
 
+    function hasDesktopIcon(icons, target) {
+        const keys = [target?.label, target?.name, target?.link_to]
+            .map((value) => String(value || "").trim().toLowerCase())
+            .filter(Boolean);
+
+        if (!keys.length) {
+            return false;
+        }
+
+        return icons.some((icon) => {
+            const iconKeys = [icon?.label, icon?.name, icon?.link_to]
+                .map((value) => String(value || "").trim().toLowerCase())
+                .filter(Boolean);
+
+            return iconKeys.some((key) => keys.includes(key));
+        });
+    }
+
+    function withRequiredDesktopIcons(icons) {
+        const source = Array.isArray(icons) ? icons.filter(Boolean).map((icon) => ({ ...icon })) : [];
+
+        REQUIRED_DESKTOP_ICONS.forEach((icon) => {
+            if (!hasDesktopIcon(source, icon)) {
+                source.push({ ...icon });
+            }
+        });
+
+        return source;
+    }
+
     function getDesktopIcons() {
-        const icons = getDesktopLayoutSource();
+        const icons = withRequiredDesktopIcons(getDesktopLayoutSource());
         const hiddenParents = new Set(
             icons.filter((icon) => icon && icon.hidden == 1).map((icon) => icon.label)
         );

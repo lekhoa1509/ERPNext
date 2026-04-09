@@ -1,0 +1,1 @@
+"""Payroll Automation Settings DocType."""

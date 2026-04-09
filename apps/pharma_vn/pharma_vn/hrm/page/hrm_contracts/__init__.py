@@ -1,0 +1,1 @@
+"""HRM Contracts page."""
