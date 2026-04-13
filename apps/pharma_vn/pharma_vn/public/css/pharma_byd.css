@@ -4,6 +4,33 @@
     gap: 16px;
 }
 
+.warehouse-layout-floor-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.warehouse-layout-floor-tab {
+    padding: 8px 14px;
+    border: 1px solid #cbd5e0;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1a202c;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.warehouse-layout-floor-tab.is-active {
+    border-color: #0f766e;
+    background: #f0fdfa;
+    color: #115e59;
+}
+
+.warehouse-layout-axis-note {
+    font-size: 12px;
+    color: #4a5568;
+}
+
 .warehouse-layout-board__summary {
     display: flex;
     flex-wrap: wrap;
@@ -77,6 +104,27 @@
 .warehouse-layout-cell__meta {
     font-size: 12px;
     color: #4a5568;
+}
+
+.warehouse-layout-cell__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.warehouse-layout-depth-chip {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #edf2f7;
+    color: #2d3748;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.warehouse-layout-depth-chip.is-occupied {
+    background: #d1fae5;
+    color: #065f46;
 }
 
 .warehouse-layout-placeholder {
@@ -1653,6 +1701,7 @@ body.pharma-shell-enabled .pharma-dashboard-empty {
 body.pharma-shell-enabled .warehouse-layout-board__summary,
 body.pharma-shell-enabled .warehouse-layout-placeholder,
 body.pharma-shell-enabled .warehouse-layout-cell,
+body.pharma-shell-enabled .warehouse-layout-floor-tab,
 body.pharma-shell-enabled .pharma-document-flow__empty,
 body.pharma-shell-enabled .pharma-document-flow__hero-card,
 body.pharma-shell-enabled .pharma-document-flow__overview-item,
@@ -1664,6 +1713,7 @@ body.pharma-shell-enabled .pharma-document-flow__step {
 }
 
 body.pharma-shell-enabled .warehouse-layout-cell__code,
+body.pharma-shell-enabled .warehouse-layout-floor-tab.is-active,
 body.pharma-shell-enabled .pharma-document-flow__hero-title,
 body.pharma-shell-enabled .pharma-document-flow__overview-value,
 body.pharma-shell-enabled .pharma-document-flow__step-title,
@@ -1672,12 +1722,23 @@ body.pharma-shell-enabled .pharma-document-flow__step-index {
 }
 
 body.pharma-shell-enabled .warehouse-layout-cell__meta,
+body.pharma-shell-enabled .warehouse-layout-axis-note,
 body.pharma-shell-enabled .pharma-document-flow__hero-text,
 body.pharma-shell-enabled .pharma-document-flow__overview-label,
 body.pharma-shell-enabled .pharma-document-flow__step-text,
 body.pharma-shell-enabled .pharma-document-flow__step-summary,
 body.pharma-shell-enabled .pharma-ai-assistant__hint {
     color: var(--pharma-shell-muted);
+}
+
+body.pharma-shell-enabled .warehouse-layout-depth-chip {
+    background: rgba(148, 163, 184, 0.22);
+    color: #f7fbff;
+}
+
+body.pharma-shell-enabled .warehouse-layout-depth-chip.is-occupied {
+    background: rgba(16, 185, 129, 0.18);
+    color: #d1fae5;
 }
 
 body.pharma-shell-enabled .pharma-document-flow__step--current,

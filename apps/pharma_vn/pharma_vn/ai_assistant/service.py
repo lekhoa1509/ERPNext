@@ -10,10 +10,10 @@ from frappe.utils import cint, cstr, flt, getdate, nowdate
 
 from pharma_vn.ai_assistant import config as assistant_config
 from pharma_vn.ai_assistant.copilot import build_copilot_reply, detect_copilot_workflow
+from pharma_vn.customer_naming import CUSTOMER_NAMING_SERIES
 
 
-DEFAULT_OPENAI_MODEL = "gpt-4.1"
-OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
+DEFAULT_AI_MODEL = assistant_config.MODEL or assistant_config.DEFAULT_OPENAI_MODEL
 ASSISTANT_SKILL_REFERENCE = (
     Path(__file__).resolve().parent / "references" / "erpnext_vn_ops_skill.md"
 )
@@ -157,8 +157,10 @@ LOCAL_HELP_PATTERNS = [
 
 def get_assistant_bootstrap():
     settings = _get_settings()
-    configured = bool(_get_openai_api_key(settings))
+    configured = bool(_get_ai_api_key(settings))
     enabled = bool(cint(settings.enabled))
+    provider_name = _get_provider_name(settings)
+    api_key_env_var = _get_api_key_env_var(settings)
     user_email = _get_current_user_email() or _first_email_from_defaults(settings) or "your-email@example.com"
 
     customer_example = _get_customer_options(limit=1)
@@ -173,7 +175,7 @@ def get_assistant_bootstrap():
         welcome_message = "AI Assistant is disabled in .env."
     elif not configured:
         welcome_message = (
-            "OpenAI API key is not configured in .env yet. Update the local .env file, then ask "
+            f"{provider_name} API key is not configured in .env yet. Update {api_key_env_var} in the local .env file, then ask "
             "about sales, purchase, warehouse, invoice flows, stock checks, or quick ERP actions."
         )
     else:
@@ -185,7 +187,9 @@ def get_assistant_bootstrap():
     return {
         "enabled": enabled,
         "configured": configured,
-        "model": cstr(settings.model).strip() or DEFAULT_OPENAI_MODEL,
+        "model": cstr(settings.model).strip() or DEFAULT_AI_MODEL,
+        "provider_name": provider_name,
+        "api_key_env_var": api_key_env_var,
         "current_user_name": _get_current_user_label(),
         "welcome_message": welcome_message,
         "sample_prompts": [
@@ -208,10 +212,12 @@ def chat_with_assistant(message, history=None):
             bootstrap=bootstrap,
         )
 
-    if not _get_openai_api_key(settings):
+    if not _get_ai_api_key(settings):
         return _assistant_result(
             status="error",
-            reply="Chua khai bao OpenAI API key trong file .env.",
+            reply=_("Chua khai bao {0} API key trong file .env ({1}).").format(
+                _get_provider_name(settings), _get_api_key_env_var(settings)
+            ),
             bootstrap=bootstrap,
         )
 
@@ -238,7 +244,7 @@ def interpret_user_message(message, history=None, settings=None):
         return copilot_plan
     context = _build_runtime_context(settings)
     payload = {
-        "model": cstr(settings.model).strip() or DEFAULT_OPENAI_MODEL,
+        "model": cstr(settings.model).strip() or DEFAULT_AI_MODEL,
         "store": False,
         "instructions": _build_openai_instructions(settings),
         "input": _build_openai_input(message=message, history=history, context=context),
@@ -254,9 +260,9 @@ def interpret_user_message(message, history=None, settings=None):
 
     try:
         response = requests.post(
-            OPENAI_RESPONSES_URL,
+            _get_ai_responses_url(settings),
             headers={
-                "Authorization": f"Bearer {_get_openai_api_key(settings)}",
+                "Authorization": f"Bearer {_get_ai_api_key(settings)}",
                 "Content-Type": "application/json",
             },
             json=payload,
@@ -276,7 +282,7 @@ def interpret_user_message(message, history=None, settings=None):
         error_message = (
             response_data.get("error", {}).get("message")
             or response.reason
-            or "OpenAI request failed"
+            or f"{_get_provider_name(settings)} request failed"
         )
         frappe.throw(_("AI request failed: {0}").format(error_message))
 
@@ -654,6 +660,8 @@ def create_customer(
     customer_doc.customer_type = resolved_customer_type
     customer_doc.customer_group = resolved_customer_group
     customer_doc.territory = resolved_territory
+    if hasattr(customer_doc, "naming_series"):
+        customer_doc.naming_series = CUSTOMER_NAMING_SERIES
 
     if resolved_channel and frappe.db.has_column("Customer", "customer_channel"):
         customer_doc.customer_channel = resolved_channel
@@ -1161,8 +1169,11 @@ def _get_settings():
     return frappe._dict(
         {
             "enabled": assistant_config.ENABLED,
-            "openai_api_key": assistant_config.OPENAI_API_KEY,
-            "model": assistant_config.OPENAI_MODEL,
+            "api_key": assistant_config.API_KEY,
+            "api_base_url": assistant_config.API_BASE_URL,
+            "provider_name": assistant_config.PROVIDER_NAME,
+            "api_key_env_var": assistant_config.API_KEY_ENV_VAR,
+            "model": assistant_config.MODEL,
             "default_company": assistant_config.DEFAULT_COMPANY,
             "default_warehouse": assistant_config.DEFAULT_WAREHOUSE,
             "default_report_recipients": assistant_config.DEFAULT_REPORT_RECIPIENTS,
@@ -1171,8 +1182,24 @@ def _get_settings():
     )
 
 
-def _get_openai_api_key(settings):
-    return cstr(settings.openai_api_key).strip()
+def _get_ai_api_key(settings):
+    return cstr(settings.api_key).strip()
+
+
+def _get_ai_base_url(settings):
+    return cstr(settings.api_base_url).strip().rstrip("/") or assistant_config.API_BASE_URL
+
+
+def _get_ai_responses_url(settings):
+    return f"{_get_ai_base_url(settings)}/responses"
+
+
+def _get_provider_name(settings):
+    return cstr(settings.provider_name).strip() or "AI"
+
+
+def _get_api_key_env_var(settings):
+    return cstr(settings.api_key_env_var).strip() or "OPENAI_API_KEY"
 
 
 def _get_current_user_email():

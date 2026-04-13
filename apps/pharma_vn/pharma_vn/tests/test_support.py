@@ -44,7 +44,13 @@ def install_frappe_stub():
 
     frappe.throw = _throw
     frappe.whitelist = lambda *args, **kwargs: (lambda fn: fn)
+    frappe.validate_and_sanitize_search_inputs = lambda fn: fn
     frappe.as_json = lambda value: str(value)
+
+    naming = types.ModuleType("frappe.model.naming")
+    naming.make_autoname = lambda pattern: pattern.replace(".####", "0001")
+    model = types.ModuleType("frappe.model")
+    model.naming = naming
 
     utils = types.ModuleType("frappe.utils")
     utils.cint = lambda value=0: int(float(value or 0))
@@ -56,5 +62,7 @@ def install_frappe_stub():
     utils.date_diff = lambda end, start: (utils.getdate(end) - utils.getdate(start)).days
 
     sys.modules["frappe"] = frappe
+    sys.modules["frappe.model"] = model
+    sys.modules["frappe.model.naming"] = naming
     sys.modules["frappe.utils"] = utils
     return frappe

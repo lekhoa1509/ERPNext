@@ -3,6 +3,7 @@ from frappe.utils import add_days, nowdate
 
 from erpnext.setup.setup_wizard.operations.taxes_setup import make_taxes_and_charges_template
 from erpnext.setup.setup_wizard.setup_wizard import setup_complete
+from pharma_vn.customer_naming import CUSTOMER_NAMING_SERIES
 
 
 BOOTSTRAP_ARGS = {
@@ -338,24 +339,27 @@ def _ensure_tax_templates(company):
 def _ensure_customers():
     for row in CUSTOMERS:
         customer_name = row["customer_name"]
-        if not frappe.db.exists("Customer", customer_name):
-            frappe.get_doc(
+        customer_docname = _get_customer_docname(customer_name)
+        if not customer_docname:
+            customer_doc = frappe.get_doc(
                 {
                     "doctype": "Customer",
                     "customer_name": customer_name,
                     "customer_type": "Company",
                     "customer_group": row["customer_group"],
                     "territory": row["territory"],
+                    "naming_series": CUSTOMER_NAMING_SERIES,
                     "customer_channel": row["customer_channel"],
                     "license_no": row["license_no"],
                     "sales_region": row["sales_region"],
                     "credit_review_status": row["credit_review_status"],
                 }
             ).insert(ignore_permissions=True)
+            customer_docname = customer_doc.name
 
-        _ensure_customer_contact(row)
-        _ensure_customer_addresses(row)
-        _ensure_customer_credit_limit(customer_name, row.get("credit_limit"))
+        _ensure_customer_contact(row, customer_docname)
+        _ensure_customer_addresses(row, customer_docname)
+        _ensure_customer_credit_limit(customer_docname, row.get("credit_limit"))
 
 
 def _ensure_suppliers():
@@ -467,7 +471,15 @@ def _ensure_modes_of_payment():
         ).insert(ignore_permissions=True)
 
 
-def _ensure_customer_contact(row):
+def _get_customer_docname(customer_reference):
+    if not customer_reference:
+        return ""
+    if frappe.db.exists("Customer", customer_reference):
+        return customer_reference
+    return frappe.db.get_value("Customer", {"customer_name": customer_reference}, "name") or ""
+
+
+def _ensure_customer_contact(row, customer_docname):
     customer_name = row["customer_name"]
     contact_name = row.get("contact_name")
     if not contact_name:
@@ -485,7 +497,7 @@ def _ensure_customer_contact(row):
                 "links": [
                     {
                         "link_doctype": "Customer",
-                        "link_name": customer_name,
+                        "link_name": customer_docname,
                     }
                 ],
             }
@@ -509,18 +521,17 @@ def _ensure_customer_contact(row):
         )
     contact.save(ignore_permissions=True)
 
-    frappe.db.set_value("Customer", customer_name, "customer_primary_contact", contact.name, update_modified=False)
+    frappe.db.set_value("Customer", customer_docname, "customer_primary_contact", contact.name, update_modified=False)
 
 
-def _ensure_customer_addresses(row):
-    customer_name = row["customer_name"]
-    billing_address = _ensure_address(customer_name, row.get("billing_address"), is_shipping_address=0)
-    shipping_address = _ensure_address(customer_name, row.get("shipping_address"), is_shipping_address=1)
+def _ensure_customer_addresses(row, customer_docname):
+    billing_address = _ensure_address(customer_docname, row.get("billing_address"), is_shipping_address=0)
+    shipping_address = _ensure_address(customer_docname, row.get("shipping_address"), is_shipping_address=1)
 
     if billing_address:
         frappe.db.set_value(
             "Customer",
-            customer_name,
+            customer_docname,
             "customer_primary_address",
             billing_address,
             update_modified=False,
@@ -528,14 +539,14 @@ def _ensure_customer_addresses(row):
     if shipping_address and frappe.db.has_column("Customer", "shipping_address_name"):
         frappe.db.set_value(
             "Customer",
-            customer_name,
+            customer_docname,
             "shipping_address_name",
             shipping_address,
             update_modified=False,
         )
 
 
-def _ensure_address(customer_name, address_data, is_shipping_address):
+def _ensure_address(customer_docname, address_data, is_shipping_address):
     if not address_data:
         return None
 
@@ -556,7 +567,7 @@ def _ensure_address(customer_name, address_data, is_shipping_address):
             "links": [
                 {
                     "link_doctype": "Customer",
-                    "link_name": customer_name,
+                    "link_name": customer_docname,
                 }
             ],
         }
@@ -564,20 +575,20 @@ def _ensure_address(customer_name, address_data, is_shipping_address):
     return address.name
 
 
-def _ensure_customer_credit_limit(customer_name, credit_limit):
+def _ensure_customer_credit_limit(customer_docname, credit_limit):
     if credit_limit is None or not frappe.db.table_exists("Customer Credit Limit"):
         return
 
     existing = frappe.db.get_value(
         "Customer Credit Limit",
-        {"parent": customer_name, "company": BOOTSTRAP_ARGS["company_name"]},
+        {"parent": customer_docname, "company": BOOTSTRAP_ARGS["company_name"]},
         "name",
     )
     if existing:
         frappe.db.set_value("Customer Credit Limit", existing, "credit_limit", credit_limit, update_modified=False)
         return
 
-    customer = frappe.get_doc("Customer", customer_name)
+    customer = frappe.get_doc("Customer", customer_docname)
     customer.append(
         "credit_limits",
         {
@@ -590,10 +601,11 @@ def _ensure_customer_credit_limit(customer_name, credit_limit):
 
 def _ensure_sample_sales_orders(company):
     for row in SAMPLE_SALES_ORDERS:
-        existing_order = frappe.db.get_value("Sales Order", {"po_no": row["po_no"], "customer": row["customer"]}, "name")
+        customer_docname = _get_customer_docname(row["customer"]) or row["customer"]
+        existing_order = frappe.db.get_value("Sales Order", {"po_no": row["po_no"], "customer": customer_docname}, "name")
         order = frappe.get_doc("Sales Order", existing_order) if existing_order else frappe.new_doc("Sales Order")
         order.company = company
-        order.customer = row["customer"]
+        order.customer = customer_docname
         order.transaction_date = row["po_date"]
         order.delivery_date = row["requested_date"]
         order.po_no = row["po_no"]
@@ -611,7 +623,7 @@ def _ensure_sample_sales_orders(company):
         order.workflow_state = row["workflow_state"]
         order.set("items", [])
 
-        customer = frappe.get_cached_doc("Customer", row["customer"])
+        customer = frappe.get_cached_doc("Customer", customer_docname)
         if customer.customer_primary_contact:
             order.contact_person = customer.customer_primary_contact
         if customer.customer_primary_address:
@@ -621,7 +633,7 @@ def _ensure_sample_sales_orders(company):
             "Dynamic Link",
             {
                 "link_doctype": "Customer",
-                "link_name": row["customer"],
+                "link_name": customer_docname,
                 "parenttype": "Address",
             },
             "parent",

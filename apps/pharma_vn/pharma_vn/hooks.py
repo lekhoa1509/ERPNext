@@ -5,24 +5,30 @@ app_description = "ERPNext customizations for pharmaceutical operations in Vietn
 app_email = "support@example.com"
 app_license = "MIT"
 required_apps = ["erpnext"]
-ASSET_VERSION = "20260409.1545"
+ASSET_VERSION = "20260413.1115"
 
 after_install = "pharma_vn.install.after_install"
 after_migrate = "pharma_vn.install.after_migrate"
+override_doctype_class = {
+    "Customer": "pharma_vn.overrides.customer.PharmaVNCustomer",
+}
 app_include_css = [
     f"/assets/pharma_vn/css/pharma_byd.css?v={ASSET_VERSION}",
     f"/assets/pharma_vn/css/erp_home.css?v={ASSET_VERSION}",
     f"/assets/pharma_vn/css/hrm_custom_pages.css?v={ASSET_VERSION}",
+    f"/assets/pharma_vn/css/customer_risk_widget.css?v={ASSET_VERSION}",
 ]
 app_include_js = [
     f"/assets/pharma_vn/js/document_flow.js?v={ASSET_VERSION}",
     f"/assets/pharma_vn/js/erp_home.js?v={ASSET_VERSION}",
     f"/assets/pharma_vn/js/ai_assistant.js?v={ASSET_VERSION}",
     f"/assets/pharma_vn/js/transaction_vat.js?v={ASSET_VERSION}",
+    f"/assets/pharma_vn/js/customer_quick_entry.js?v={ASSET_VERSION}",
     f"/assets/pharma_vn/js/hrm_custom_pages.js?v={ASSET_VERSION}",
 ]
 doctype_js = {
     "Quotation": "public/js/document_flow_form.js",
+    "Customer": "public/js/customer.js",
     "Sales Order": "public/js/sales_order.js",
     "Delivery Note": "public/js/delivery_note.js",
     "Sales Invoice": "public/js/sales_invoice.js",
@@ -42,6 +48,7 @@ doctype_js = {
 doc_events = {
     "Sales Order": {
         "validate": "pharma_vn.automation.sales_order.validate_sales_order",
+        "before_submit": "pharma_vn.risk_assessment.service.block_high_risk_sales_order",
         "on_submit": "pharma_vn.automation.next_documents.create_follow_up_for_sales_order",
     },
     "Quotation": {

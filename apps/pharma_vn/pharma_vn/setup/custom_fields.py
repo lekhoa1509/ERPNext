@@ -145,6 +145,18 @@ CUSTOM_FIELDS = {
             "options": "\nPending\nApproved\nBlocked",
             "insert_after": "sales_region",
         },
+        {
+            "fieldname": "customer_risk_assessment_section",
+            "label": "Customer Risk Assessment",
+            "fieldtype": "Section Break",
+            "insert_after": "credit_review_status",
+        },
+        {
+            "fieldname": "customer_risk_dashboard_html",
+            "label": "Risk Dashboard",
+            "fieldtype": "HTML",
+            "insert_after": "customer_risk_assessment_section",
+        },
     ],
     "Supplier": [
         {

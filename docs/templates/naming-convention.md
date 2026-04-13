@@ -17,7 +17,7 @@
 
 ## 3. Document Series
 
-- Customer: `CUS-B2B-.YYYY.-`
+- Customer: `CM-.####`
 - Supplier: `SUP-RM-.YYYY.-`
 - Sales Order: `SO-B2B-.YYYY.-`
 - Purchase Order: `PO-RM-.YYYY.-`

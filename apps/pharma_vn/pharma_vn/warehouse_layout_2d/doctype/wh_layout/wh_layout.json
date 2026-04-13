@@ -11,10 +11,24 @@
   "company",
   "is_active",
   "section_dimensions",
+  "total_floors",
+  "total_rails",
+  "total_blocks",
+  "total_depths",
+  "legacy_total_rows",
   "total_rows",
+  "legacy_total_columns",
   "total_columns",
   "auto_generate_cells",
   "description",
+  "section_plc_simulator",
+  "wcs_bridge_url",
+  "wcs_bridge_api_key",
+  "plc_simulator_column_break",
+  "plc_gateway_configuration_path",
+  "activate_all_devices_on_connect",
+  "section_plc_configuration_json",
+  "plc_gateway_configuration_json",
   "section_preview",
   "layout_preview_html"
  ],
@@ -49,21 +63,61 @@
   {
    "fieldname": "section_dimensions",
    "fieldtype": "Section Break",
-   "label": "Grid Setup"
+   "label": "WCS Layout Setup"
+  },
+  {
+   "default": "1",
+   "fieldname": "total_floors",
+   "fieldtype": "Int",
+   "label": "Total Floors",
+   "reqd": 1
   },
   {
    "default": "4",
-   "fieldname": "total_rows",
+   "fieldname": "total_rails",
    "fieldtype": "Int",
-   "label": "Total Rows",
+   "label": "Total Rails",
    "reqd": 1
   },
   {
    "default": "6",
+   "fieldname": "total_blocks",
+   "fieldtype": "Int",
+   "label": "Total Blocks",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "total_depths",
+   "fieldtype": "Int",
+   "label": "Total Depths",
+   "reqd": 1
+  },
+  {
+   "fieldname": "legacy_total_rows",
+   "fieldtype": "Column Break",
+   "hidden": 1,
+   "label": "Legacy Rows"
+  },
+  {
+   "fieldname": "total_rows",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Legacy Total Rows",
+   "read_only": 1
+  },
+  {
+   "fieldname": "legacy_total_columns",
+   "fieldtype": "Column Break",
+   "hidden": 1,
+   "label": "Legacy Columns"
+  },
+  {
    "fieldname": "total_columns",
    "fieldtype": "Int",
-   "label": "Total Columns",
-   "reqd": 1
+   "hidden": 1,
+   "label": "Legacy Total Columns",
+   "read_only": 1
   },
   {
    "default": "1",
@@ -75,6 +129,50 @@
    "fieldname": "description",
    "fieldtype": "Small Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "section_plc_simulator",
+   "fieldtype": "Section Break",
+   "label": "PLC Simulator Connection"
+  },
+  {
+   "default": "http://127.0.0.1:5057",
+   "fieldname": "wcs_bridge_url",
+   "fieldtype": "Data",
+   "label": "WCS Bridge URL"
+  },
+  {
+   "default": "change-this-api-key",
+   "fieldname": "wcs_bridge_api_key",
+   "fieldtype": "Data",
+   "label": "WCS Bridge API Key"
+  },
+  {
+   "fieldname": "plc_simulator_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "plc_gateway_configuration_path",
+   "fieldtype": "Data",
+   "label": "Gateway Configuration Path"
+  },
+  {
+   "default": "1",
+   "fieldname": "activate_all_devices_on_connect",
+   "fieldtype": "Check",
+   "label": "Activate All Devices On Connect"
+  },
+  {
+   "fieldname": "section_plc_configuration_json",
+   "fieldtype": "Section Break",
+   "label": "Advanced Gateway Configuration"
+  },
+  {
+   "description": "Optional inline JSON. When present, it overrides Gateway Configuration Path.",
+   "fieldname": "plc_gateway_configuration_json",
+   "fieldtype": "Code",
+   "label": "Gateway Configuration JSON",
+   "options": "JSON"
   },
   {
    "fieldname": "section_preview",

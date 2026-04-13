@@ -652,9 +652,12 @@ window.pharma_vn = window.pharma_vn || {};
       return "Assistant is disabled.";
     }
     if (!state.bootstrap.configured) {
-      return "OpenAI API key is missing.";
+      return `${state.bootstrap.provider_name || "AI"} API key is missing.`;
     }
-    return `Connected to ${state.bootstrap.model || "OpenAI"}.`;
+    if (state.bootstrap.model) {
+      return `Connected to ${state.bootstrap.provider_name || "AI"} via ${state.bootstrap.model}.`;
+    }
+    return `Connected to ${state.bootstrap.provider_name || "AI"}.`;
   }
 
   function ensureStyles() {
@@ -784,7 +787,7 @@ window.pharma_vn = window.pharma_vn || {};
     sendButton.disabled = state.isLoading || !textarea.value.trim() || (Boolean(state.bootstrap) && !ready);
 
     if (!ready && state.bootstrap) {
-      textarea.placeholder = "Configure OPENAI_API_KEY in .env to enable the assistant.";
+      textarea.placeholder = `Configure ${state.bootstrap.api_key_env_var || "OPENAI_API_KEY"} in .env to enable the assistant.`;
     } else {
       textarea.placeholder = "Enter message";
     }

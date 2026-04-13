@@ -11,7 +11,13 @@
   "cell_code",
   "cell_label",
   "section_position",
+  "floor",
+  "rail",
+  "block",
+  "depth",
+  "legacy_row_index",
   "row_index",
+  "legacy_column_index",
   "column_index",
   "capacity_qty",
   "status",
@@ -52,16 +58,58 @@
    "label": "Position"
   },
   {
+   "fieldname": "floor",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Floor",
+   "reqd": 1
+  },
+  {
+   "fieldname": "rail",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Rail",
+   "reqd": 1
+  },
+  {
+   "fieldname": "block",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Block",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "depth",
+   "fieldtype": "Int",
+   "label": "Depth",
+   "reqd": 1
+  },
+  {
+   "fieldname": "legacy_row_index",
+   "fieldtype": "Column Break",
+   "hidden": 1,
+   "label": "Legacy Row"
+  },
+  {
    "fieldname": "row_index",
    "fieldtype": "Int",
-   "label": "Row Index",
-   "reqd": 1
+   "hidden": 1,
+   "label": "Legacy Row Index",
+   "read_only": 1
+  },
+  {
+   "fieldname": "legacy_column_index",
+   "fieldtype": "Column Break",
+   "hidden": 1,
+   "label": "Legacy Column"
   },
   {
    "fieldname": "column_index",
    "fieldtype": "Int",
-   "label": "Column Index",
-   "reqd": 1
+   "hidden": 1,
+   "label": "Legacy Column Index",
+   "read_only": 1
   },
   {
    "fieldname": "capacity_qty",
@@ -132,7 +180,7 @@
    "write": 1
   }
  ],
- "search_fields": "cell_code,cell_label,warehouse,layout",
+ "search_fields": "cell_code,cell_label,warehouse,layout,floor,rail,block,depth",
  "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
